@@ -222,7 +222,7 @@ public class Os {
 
 
 
-    //populate the sharedlist with 10 random number
+    //populate the shared-list with 10 random number
     private void populateSharedList(){
 
         for (int i = 0; i <10; i++) {

@@ -9,7 +9,9 @@ import java.util.ArrayList;
 public class ProcessStructure {
 
     private int PID;
+
     private Task task;
+
     private ArrayList<Integer> data = new ArrayList<>();
     private String startTime=null;
     private String endTime=null;
@@ -77,7 +79,7 @@ public class ProcessStructure {
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss");
             LocalDateTime now = LocalDateTime.now();
             this.endTime = dtf.format(now);
-           Thread.sleep(1000);
+            Thread.sleep(1000);
 
 
             for (int i = 0; i < data.size() ; i++) {

@@ -2,11 +2,32 @@ package osproject;
 
 import java.util.ArrayList;
 
+
+
+// shared list each processor have access to
+// [9,8,7,6,5,4,3,2,1]
+
+// the process "A" wants location 5,9 to complete its task
+
+// the process "B" wants location 3,7 to complete its task
+
+
+
 public class Task {
+
+//  Individual Process Task
     private int taskID;
+
+//  Is reduced after other processes run takes is called afterburner
     private int priority;
+
+//  Shared list containing resources, used to copy list of resources
     private ArrayList<Integer> sharedList;
+
+//  indexRequiredList that holds the index location
+//  inorder to complete its task
     private ArrayList<Integer> indexRequiredList = new ArrayList<>();
+    
     int firstLocation=0;
     int secondLocation=-1;
 
@@ -54,21 +75,29 @@ public class Task {
        return (int) Math.floor(Math.random()*(9-0+1)+0);
     }
 
-    private void getIndexes(){
-        firstLocation=getRandomNumber();
 
+    private void getIndexes(){
+//      Get random number between 0-9
+        firstLocation=getRandomNumber();
+//      Checking if the task is a display task
+//      As every other process requires two location
         if(taskID==3){
+//          Assign a random number to the indexRequiredList that holds the index location
+//          inorder to complete its task
             indexRequiredList.add(firstLocation);
         }else{
-
+//          Get random number between 0-9
             secondLocation=getRandomNumber();
+//          Validation check
             while(secondLocation==firstLocation){
                 secondLocation = getRandomNumber();
             }
+//          Assign a random number to the indexRequiredList that holds the index location
+//          inorder to complete its task
             indexRequiredList.add(firstLocation);
             indexRequiredList.add(secondLocation);
-
         }
+
     }
 
     public int getTaskID() {
