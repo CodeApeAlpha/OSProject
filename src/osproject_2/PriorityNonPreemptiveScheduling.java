@@ -3,16 +3,17 @@ package osproject_2;
 import osproject_2.helpers.arrivalTimeSort;
 import osproject_2.helpers.prioritySort;
 
+import java.sql.Time;
 import java.util.*;
 
 public class PriorityNonPreemptiveScheduling {
 
     private ArrayList<Process> listOfProcess=new ArrayList<>();
-    private Queue readyQueue=  new LinkedList<Process>();
+    private  Queue readyQueue=  new LinkedList<Process>();
 
 //  Generate a list of Random processes
     private void generateRandomTask(){
-        for(int taskID=0; taskID<20;taskID++){
+        for(int x=0; x<20;x++){
             listOfProcess.add(new Process(generateRandomNumber(),generateRandomTaskID(),generateRandomPriority(),generateRandomArrival(),generateRandomBurstTime()));
         }
     }
@@ -30,24 +31,17 @@ public class PriorityNonPreemptiveScheduling {
         generateRandomTask();
         listOfProcess.sort(new prioritySort());
         listOfProcess.sort(new arrivalTimeSort());
-
         for(Process process:listOfProcess){
             readyQueue.add(process);
         }
         return readyQueue;
     }
-    public Queue getReadyQueue() {
-        return readyQueue;
+    public void viewReadyQueue()
+    {
+        for(Process pro : listOfProcess)
+        {
+            System.out.println("\t"+pro.getpID()+"\t\t"+pro.getTaskID()+"\t\t\t"+pro.getArrivalTime()+"\t\t\t"+pro.getPriority()+"\t\t\t"+pro.getBurstTime());
+        }
     }
-
-    public static void main(String [] args){
-
-       PriorityNonPreemptiveScheduling permittedNonPrimitiveOS= new PriorityNonPreemptiveScheduling();
-       permittedNonPrimitiveOS.readyQueueLoader();
-       Queue<Process> queue= permittedNonPrimitiveOS.getReadyQueue();
-       queue.peek();
-
-    }
-
 
 }
